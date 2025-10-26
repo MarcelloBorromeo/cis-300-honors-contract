@@ -1,3 +1,8 @@
+st.set_page_config(
+    page_title="Credit Default Predictor",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 # Custom CSS for styling
 st.markdown("""
     <style>
