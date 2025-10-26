@@ -14,19 +14,17 @@ st.set_page_config(
 # Custom CSS for styling
 st.markdown("""
     <style>
-    /* Main background */
+    /* Main background with gradient */
     .main {
-        background-color: #0a0a0a;
-        padding: 2rem;
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        padding: 0 !important;
     }
     
-    /* Content container */
+    /* Content container with larger horizontal margins */
     .block-container {
-        background-color: #1a1a1a;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 4px 20px rgba(220, 38, 38, 0.2);
-        border: 1px solid #2a2a2a;
+        max-width: 1400px;
+        padding: 3rem 6rem !important;
+        margin: 0 auto;
     }
     
     /* All text white by default */
@@ -34,156 +32,290 @@ st.markdown("""
         color: white !important;
     }
     
+    /* HEADER SECTION */
+    .header-section {
+        background: linear-gradient(135deg, #dc2626 0%, #7c2d12 50%, #991b1b 100%);
+        padding: 3rem 6rem;
+        margin: 0 -6rem 3rem -6rem;
+        border-bottom: 4px solid #fbbf24;
+        box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .header-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
+    }
+    
+    .header-section h1 {
+        position: relative;
+        z-index: 1;
+    }
+    
     /* Header styling */
     h1 {
-        color: #dc2626 !important;
-        font-size: 3rem !important;
-        font-weight: 700 !important;
+        color: #fbbf24 !important;
+        font-size: 3.5rem !important;
+        font-weight: 800 !important;
         text-align: center;
-        margin-bottom: 0.5rem !important;
+        margin: 0 !important;
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 3px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* NAVIGATION SECTION */
+    .navigation-section {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        padding: 1.5rem 6rem;
+        margin: 0 -6rem 3rem -6rem;
+        border-bottom: 2px solid #3b82f6;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .nav-item {
+        color: #93c5fd !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+    
+    .nav-item:hover {
+        background-color: rgba(59, 130, 246, 0.2);
+        color: #60a5fa !important;
+    }
+    
+    /* MAIN SECTION */
+    .main-section {
+        background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+        border-radius: 20px;
+        padding: 3rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        border: 2px solid #3b82f6;
     }
     
     h2 {
-        color: #ef4444 !important;
-        font-size: 1.8rem !important;
-        margin-top: 2rem !important;
-        border-bottom: 2px solid #dc2626;
-        padding-bottom: 0.5rem;
+        color: #fbbf24 !important;
+        font-size: 2rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 1.5rem !important;
+        border-bottom: 3px solid #dc2626;
+        padding-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
     }
     
     h3 {
-        color: #f87171 !important;
-        font-size: 1.3rem !important;
-        margin-top: 1.5rem !important;
+        color: #60a5fa !important;
+        font-size: 1.5rem !important;
+        margin-top: 2rem !important;
+        margin-bottom: 1rem !important;
+        padding-left: 1rem;
+        border-left: 4px solid #3b82f6;
     }
     
     /* Description box */
     .description-box {
-        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         color: white;
-        padding: 2rem;
-        border-radius: 10px;
-        margin: 1.5rem 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        border: 2px solid #dc2626;
-    }
-    
-    /* Hero banner */
-    .hero-banner {
-        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-        color: white;
-        padding: 3rem 2rem;
+        padding: 2.5rem;
         border-radius: 15px;
         margin: 2rem 0;
-        text-align: center;
-        box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        box-shadow: 0 6px 24px rgba(59, 130, 246, 0.3);
+        border: 2px solid #3b82f6;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .description-box::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+    }
+    
+    .description-box h2 {
+        border-bottom: 3px solid #fbbf24 !important;
     }
     
     /* Image containers */
     .image-container {
-        border-radius: 10px;
+        border-radius: 15px;
         overflow: hidden;
-        border: 2px solid #3a3a3a;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        border: 3px solid #3b82f6;
+        box-shadow: 0 6px 24px rgba(59, 130, 246, 0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        padding: 0.5rem;
+    }
+    
+    .image-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(59, 130, 246, 0.6);
     }
     
     /* Input labels */
     label {
-        color: #d1d5db !important;
-        font-weight: 500 !important;
-        font-size: 0.95rem !important;
+        color: #93c5fd !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     
     /* Sliders */
     .stSlider > div > div > div {
-        background-color: #dc2626 !important;
+        background-color: #3b82f6 !important;
     }
     
     .stSlider > div > div > div > div {
-        background-color: #ef4444 !important;
+        background-color: #60a5fa !important;
+    }
+    
+    /* Number inputs */
+    .stNumberInput > div > div > input {
+        background-color: #1e293b !important;
+        color: white !important;
+        border: 2px solid #3b82f6 !important;
+        border-radius: 8px !important;
     }
     
     /* Select boxes */
     .stSelectbox > div > div {
-        background-color: #2a2a2a !important;
+        background-color: #1e293b !important;
         color: white !important;
-        border: 1px solid #3a3a3a !important;
+        border: 2px solid #3b82f6 !important;
+        border-radius: 8px !important;
     }
     
-    /* Footer */
+    /* Input fields section */
+    .input-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 1.5rem 0;
+        border: 2px solid #475569;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* FOOTER SECTION */
+    .footer-section {
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+        padding: 2.5rem 6rem;
+        margin: 3rem -6rem 0 -6rem;
+        border-top: 4px solid #fbbf24;
+        box-shadow: 0 -8px 32px rgba(251, 191, 36, 0.2);
+    }
+    
     .footer {
         text-align: center;
-        padding: 2rem 0 1rem 0;
-        color: #6b7280;
-        border-top: 2px solid #dc2626;
-        margin-top: 3rem;
+        color: #93c5fd;
+    }
+    
+    .footer p {
+        margin: 0.5rem 0;
     }
     
     /* Prediction result boxes */
-    .stSuccess {
-        background-color: #1a1a1a !important;
-        border: 2px solid #10b981 !important;
-        padding: 1rem;
-        border-radius: 10px;
-        font-weight: 600;
+    .results-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        border-radius: 20px;
+        padding: 3rem;
+        margin-top: 3rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        border: 3px solid #3b82f6;
     }
     
-    .stError {
-        background-color: #1a1a1a !important;
-        border: 2px solid #dc2626 !important;
-        padding: 1rem;
-        border-radius: 10px;
-        font-weight: 600;
-    }
-    
-    /* Button styling */
-    .stButton>button {
-        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%) !important;
-        color: white !important;
-        font-size: 1.2rem !important;
-        font-weight: 600 !important;
-        padding: 0.75rem 2rem !important;
-        border-radius: 10px !important;
-        border: 2px solid #dc2626 !important;
-        width: 100%;
-        margin-top: 2rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-    }
-    
-    .stButton>button:hover {
-        background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
-        border-color: #ef4444 !important;
-    }
-    
-    /* Divider */
-    hr {
-        border-color: #3a3a3a !important;
-        margin: 2rem 0 !important;
-    }
-    
-    /* Results card */
     .results-card {
-        background-color: #2a2a2a;
-        border: 2px solid #3a3a3a;
-        border-radius: 10px;
-        padding: 1.5rem;
-        margin-top: 1rem;
+        background-color: #1e293b;
+        border: 3px solid #475569;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-top: 1.5rem;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
     }
     
     .success-card {
         border-color: #10b981 !important;
-        background: linear-gradient(135deg, #1a1a1a 0%, #064e3b 100%);
+        background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+        box-shadow: 0 6px 24px rgba(16, 185, 129, 0.4);
     }
     
     .error-card {
         border-color: #dc2626 !important;
-        background: linear-gradient(135deg, #1a1a1a 0%, #450a0a 100%);
+        background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+        box-shadow: 0 6px 24px rgba(220, 38, 38, 0.4);
+    }
+    
+    /* Button styling */
+    .stButton>button {
+        background: linear-gradient(135deg, #dc2626 0%, #7c2d12 50%, #991b1b 100%) !important;
+        color: #fbbf24 !important;
+        font-size: 1.3rem !important;
+        font-weight: 700 !important;
+        padding: 1rem 3rem !important;
+        border-radius: 15px !important;
+        border: 3px solid #fbbf24 !important;
+        width: 100%;
+        margin-top: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 24px rgba(220, 38, 38, 0.4);
+    }
+    
+    .stButton>button:hover {
+        background: linear-gradient(135deg, #ef4444 0%, #92400e 50%, #b91c1c 100%) !important;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(251, 191, 36, 0.6);
+        border-color: #fcd34d !important;
+    }
+    
+    /* Divider */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(90deg, transparent, #3b82f6, transparent) !important;
+        margin: 2.5rem 0 !important;
+    }
+    
+    /* Success/Error messages */
+    .stSuccess, .stError {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        font-size: 1.3rem !important;
+        font-weight: 700 !important;
+    }
+    
+    /* Probability text styling */
+    .prob-text {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -203,8 +335,32 @@ with open(data_info_filename, 'rb') as file:
 expected_columns = data_info['expected_columns']
 categorical_unique_values = data_info['categorical_unique_values']
 
+# ============================================
 # HEADER SECTION
-st.markdown("# Credit Default Prediction System")
+# ============================================
+st.markdown("""
+    <div class="header-section">
+        <h1>💳 Credit Default Prediction System</h1>
+    </div>
+""", unsafe_allow_html=True)
+
+# ============================================
+# NAVIGATION SECTION
+# ============================================
+st.markdown("""
+    <div class="navigation-section">
+        <div class="nav-content">
+            <span class="nav-item">🏠 Home</span>
+            <span class="nav-item">📊 Predict</span>
+            <span class="nav-item">📈 Analytics</span>
+            <span class="nav-item">ℹ️ About</span>
+        </div>
+    </div>
+""", unsafe_allow_html=True)
+
+# ============================================
+# MAIN SECTION
+# ============================================
 
 # Load and display images
 try:
@@ -230,13 +386,11 @@ try:
 except:
     pass  # If images aren't found, continue without them
 
-st.markdown("---")
-
-# MAIN SECTION - Description
+# Description
 st.markdown("""
     <div class="description-box">
-        <h2 style="color: #ef4444; margin-top: 0;">Predict Loan Default Risk with Confidence</h2>
-        <p style="font-size: 1.1rem; line-height: 1.6; color: #d1d5db;">
+        <h2>🎯 Predict Loan Default Risk with Confidence</h2>
+        <p style="font-size: 1.15rem; line-height: 1.8; color: #e5e7eb;">
             Our advanced machine learning model analyzes creditworthiness using the renowned German Credit Dataset. 
             By evaluating key financial indicators—including loan duration, credit history, employment background, 
             and personal financial status—this tool provides accurate predictions of loan default probability. 
@@ -247,11 +401,13 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# MAIN SECTION - Input Form
-st.markdown("## Enter Customer Details")
+# Input Form
+st.markdown('<div class="main-section">', unsafe_allow_html=True)
+st.markdown("## 📝 Enter Customer Details")
 
 # Numerical Features Section
-st.markdown("### Financial Information")
+st.markdown('<div class="input-section">', unsafe_allow_html=True)
+st.markdown("### 💰 Financial Information")
 
 months_loan_duration = st.slider('Months Loan Duration', min_value=6, max_value=72, value=12)
 amount = st.slider('Amount', min_value=250, max_value=18424, value=1000)
@@ -259,20 +415,32 @@ percent_of_income = st.slider('Percent of Income', min_value=1, max_value=4, val
 years_at_residence = st.slider('Years at Residence', min_value=1, max_value=4, value=2)
 age = st.slider('Age', min_value=18, max_value=75, value=30)
 
+st.markdown('</div>', unsafe_allow_html=True)
+
 st.markdown("---")
 
 # Categorical Features Section
-st.markdown("### Categorical Features")
+st.markdown('<div class="input-section">', unsafe_allow_html=True)
+st.markdown("### 📋 Categorical Features")
 
-checking_balance = st.selectbox('Checking Balance', categorical_unique_values['checking_balance'])
-credit_history = st.selectbox('Credit History', categorical_unique_values['credit_history'])
-purpose = st.selectbox('Purpose', categorical_unique_values['purpose'])
-savings_balance = st.selectbox('Savings Balance', categorical_unique_values['savings_balance'])
-employment_duration = st.selectbox('Employment Duration', categorical_unique_values['employment_duration'])
-other_credit = st.selectbox('Other Credit', categorical_unique_values['other_credit'])
-housing = st.selectbox('Housing', categorical_unique_values['housing'])
-job = st.selectbox('Job', categorical_unique_values['job'])
-phone = st.selectbox('Phone', categorical_unique_values['phone'])
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    checking_balance = st.selectbox('Checking Balance', categorical_unique_values['checking_balance'])
+    credit_history = st.selectbox('Credit History', categorical_unique_values['credit_history'])
+    purpose = st.selectbox('Purpose', categorical_unique_values['purpose'])
+
+with col2:
+    savings_balance = st.selectbox('Savings Balance', categorical_unique_values['savings_balance'])
+    employment_duration = st.selectbox('Employment Duration', categorical_unique_values['employment_duration'])
+    other_credit = st.selectbox('Other Credit', categorical_unique_values['other_credit'])
+
+with col3:
+    housing = st.selectbox('Housing', categorical_unique_values['housing'])
+    job = st.selectbox('Job', categorical_unique_values['job'])
+    phone = st.selectbox('Phone', categorical_unique_values['phone'])
+
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Collect user input into a dictionary
 user_input = {
@@ -307,31 +475,55 @@ for col in expected_columns:
 input_encoded = input_encoded[expected_columns]
 
 # Make prediction
-if st.button('Predict Default Risk'):
+if st.button('🔮 Predict Default Risk'):
     prediction = model.predict(input_encoded)
     prediction_proba = model.predict_proba(input_encoded)
     
-    st.markdown("---")
-    st.markdown("## Prediction Results")
+    st.markdown('<div class="results-section">', unsafe_allow_html=True)
+    st.markdown("## 📊 Prediction Results")
     
     if prediction[0] == 0:
         st.markdown('<div class="results-card success-card">', unsafe_allow_html=True)
-        st.success('Prediction: No Default - Low Risk Customer')
-        st.markdown(f"<p style='font-size: 1.1rem;'><strong>Probability of No Default:</strong> <span style='color: #10b981; font-size: 1.3rem;'>{prediction_proba[0][0]:.1%}</span></p>", unsafe_allow_html=True)
-        st.markdown(f"<p style='font-size: 1.1rem;'><strong>Probability of Default:</strong> <span style='color: #6b7280;'>{prediction_proba[0][1]:.1%}</span></p>", unsafe_allow_html=True)
+        st.success('✅ Prediction: No Default - Low Risk Customer')
+        st.markdown(f"""
+            <div class="prob-text">
+                <strong>Probability of No Default:</strong> 
+                <span style='color: #10b981; font-size: 1.5rem; font-weight: 800;'>{prediction_proba[0][0]:.1%}</span>
+            </div>
+            <div class="prob-text">
+                <strong>Probability of Default:</strong> 
+                <span style='color: #6b7280;'>{prediction_proba[0][1]:.1%}</span>
+            </div>
+        """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="results-card error-card">', unsafe_allow_html=True)
-        st.error('Prediction: Default - High Risk Customer')
-        st.markdown(f"<p style='font-size: 1.1rem;'><strong>Probability of Default:</strong> <span style='color: #dc2626; font-size: 1.3rem;'>{prediction_proba[0][1]:.1%}</span></p>", unsafe_allow_html=True)
-        st.markdown(f"<p style='font-size: 1.1rem;'><strong>Probability of No Default:</strong> <span style='color: #6b7280;'>{prediction_proba[0][0]:.1%}</span></p>", unsafe_allow_html=True)
+        st.error('⚠️ Prediction: Default - High Risk Customer')
+        st.markdown(f"""
+            <div class="prob-text">
+                <strong>Probability of Default:</strong> 
+                <span style='color: #fca5a5; font-size: 1.5rem; font-weight: 800;'>{prediction_proba[0][1]:.1%}</span>
+            </div>
+            <div class="prob-text">
+                <strong>Probability of No Default:</strong> 
+                <span style='color: #6b7280;'>{prediction_proba[0][0]:.1%}</span>
+            </div>
+        """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ============================================
 # FOOTER SECTION
+# ============================================
 st.markdown("""
-    <div class="footer">
-        <p style="color: #9ca3af;"><strong>Credit Default Prediction System</strong></p>
-        <p style="color: #6b7280;">Powered by Machine Learning | German Credit Dataset</p>
-        <p style="font-size: 0.95rem; color: #9ca3af; margin-top: 1rem;">Marcello Borromeo | CIS 300 Honors Contract</p>
+    <div class="footer-section">
+        <div class="footer">
+            <p style="color: #fbbf24; font-size: 1.3rem; font-weight: 700;">💳 Credit Default Prediction System</p>
+            <p style="color: #93c5fd; font-size: 1.1rem;">Powered by Machine Learning | German Credit Dataset</p>
+            <p style="font-size: 1rem; color: #60a5fa; margin-top: 1.5rem;">Marcello Borromeo | CIS 300 Honors Contract</p>
+        </div>
     </div>
 """, unsafe_allow_html=True)
