@@ -168,7 +168,7 @@ with st.expander("📞 Phone Availability"):
 # --- FOOTER / RETURN LINK ---
 st.markdown("<hr>", unsafe_allow_html=True)
 if st.button("⬅️ Back to Credit Default App"):
-    st.markdown("<meta http-equiv='refresh' content='0; url=/' />", unsafe_allow_html=True)
+    st.markdown("<meta http-equiv='refresh' content='0; url=../' />", unsafe_allow_html=True)
 
 st.markdown(
     """
