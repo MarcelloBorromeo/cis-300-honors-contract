@@ -40,7 +40,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.header('Enter Customer Details:')
+st.header('Enter Customer Details')
 
 # --- NUMERICAL FEATURES ---
 months_loan_duration = st.slider('Months Loan Duration', min_value=6, max_value=72, value=12)
