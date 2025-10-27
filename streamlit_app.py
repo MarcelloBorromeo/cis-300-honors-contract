@@ -31,24 +31,25 @@ st.image("loan.jpeg", use_container_width=True)
 # --- TUTORIAL BUTTON (UPPER RIGHT) ---
 st.markdown(
     """
-    <div style='position: absolute; top: 25px; right: 30px;'>
-        <a href='Tutorial' target='_self'>
-            <button style='
-                background-color:#FF0000;
-                color:white;
-                border:none;
-                padding:10px 16px;
-                border-radius:8px;
-                font-size:14px;
-                cursor:pointer;
-            '>
-                Tutorial
-            </button>
-        </a>
-    </div>
+    <style>
+    .tutorial-btn {
+        position: absolute;
+        top: 25px;
+        right: 30px;
+        background-color: #FF0000;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
+
+st.page_link("pages/Tutorial.py", label="Tutorial", icon="🎓")
 
 # --- ABOUT SECTION ---
 st.header("About This Tool")
