@@ -340,7 +340,7 @@ categorical_unique_values = data_info['categorical_unique_values']
 # ============================================
 st.markdown("""
     <div class="header-section">
-        <h1>💳 Credit Default Prediction System</h1>
+        <h1>Credit Default Prediction Tool</h1>
     </div>
 """, unsafe_allow_html=True)
 
@@ -389,14 +389,12 @@ except:
 # Description
 st.markdown("""
     <div class="description-box">
-        <h2>🎯 Predict Loan Default Risk with Confidence</h2>
+        <h2>Predict Loan Default Risk with Confidence!</h2>
         <p style="font-size: 1.15rem; line-height: 1.8; color: #e5e7eb;">
-            Our advanced machine learning model analyzes creditworthiness using the renowned German Credit Dataset. 
-            By evaluating key financial indicators—including loan duration, credit history, employment background, 
-            and personal financial status—this tool provides accurate predictions of loan default probability. 
-            Simply configure your parameters below and receive instant risk assessment to make informed lending decisions. 
-            Whether you're a financial institution, credit analyst, or researcher, this tool helps you understand 
-            credit risk with precision and clarity.
+            This machine learning model brings the renowned German Credit Dataset to life — analyzing the creditworthiness of German citizens with data-driven precision.
+By digging into key financial details like loan duration, credit history, employment background, and personal finances, it predicts the probability of loan default with remarkable accuracy.
+Just tweak the parameters below and watch as real-time insights unfold, giving you an instant risk profile to power smarter lending decisions!
+Whether you’re a financial institution assessing applicants, a credit analyst exploring trends, or a researcher experimenting with predictive modeling, this tool transforms credit risk analysis into an engaging, intuitive experience.
         </p>
     </div>
 """, unsafe_allow_html=True)
