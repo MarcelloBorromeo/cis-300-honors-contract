@@ -1,5 +1,3 @@
-make the text a little bigger
- 
 import streamlit as st
 import pickle
 import pandas as pd
