@@ -52,7 +52,7 @@ st.markdown(
 )
 
 if st.button("🎓 Tutorial", key="tutorial_btn", help="Open the tutorial page"):
-    st.switch_page("Tutorial")
+    st.switch_page("pages/Tutorial")
 
 # --- ABOUT SECTION ---
 st.header("About This Tool")
