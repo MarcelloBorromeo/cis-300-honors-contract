@@ -17,16 +17,6 @@ with open(data_info_filename, 'rb') as file:
 expected_columns = data_info['expected_columns']
 categorical_unique_values = data_info['categorical_unique_values']
 
-# --- IMAGE SECTION ---
-st.markdown(
-    """
-    <div style='text-align: center;'>
-        <img src='loan_image.jpeg' width='400'>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
 # --- TITLE SECTION ---
 st.markdown(
     """
