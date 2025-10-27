@@ -29,24 +29,26 @@ st.markdown(
 st.image("loan.jpeg", use_container_width=True)
 
 # --- TUTORIAL BUTTON (UPPER RIGHT) ---
-col1, col2, col3 = st.columns([8, 1, 1])
-with col3:
-    st.markdown(
-        """
-        <style>
-        div[data-testid="stPageLink"] > a {
-            background-color: #FF0000 !important;
-            color: white !important;
-            padding: 10px 16px !important;
-            border-radius: 8px !important;
-            text-decoration: none !important;
-            font-size: 14px !important;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    st.page_link("pages/Tutorial.py", label="Tutorial")
+st.markdown(
+    """
+    <div style='position: absolute; top: 25px; right: 30px;'>
+        <a href='Tutorial' target='_self'>
+            <button style='
+                background-color:#FF0000;
+                color:white;
+                border:none;
+                padding:10px 16px;
+                border-radius:8px;
+                font-size:14px;
+                cursor:pointer;
+            '>
+                Tutorial
+            </button>
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # --- ABOUT SECTION ---
 st.header("About This Tool")
