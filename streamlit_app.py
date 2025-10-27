@@ -34,7 +34,7 @@ st.markdown(
     <div style='position: absolute; top: 25px; right: 30px;'>
         <a href='Tutorial' target='_self'>
             <button style='
-                background-color:#4CAF50;
+                background-color:#808080;
                 color:white;
                 border:none;
                 padding:10px 16px;
