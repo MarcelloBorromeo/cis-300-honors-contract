@@ -159,7 +159,7 @@ with st.expander("📞 Phone Availability"):
 # --- FOOTER / RETURN LINK ---
 st.markdown("<hr>", unsafe_allow_html=True)
 if st.button("⬅️ Back to Credit Default App"):
-    st.switch_page("streamlit_app.py")
+    st.switch_page("streamlit_app")
 
 st.markdown(
     """
