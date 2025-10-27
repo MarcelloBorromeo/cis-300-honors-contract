@@ -28,6 +28,28 @@ st.markdown(
 # Display image below the title
 st.image("loan.jpeg", use_container_width=True)
 
+# --- TUTORIAL BUTTON (UPPER RIGHT) ---
+st.markdown(
+    """
+    <div style='position: absolute; top: 25px; right: 30px;'>
+        <a href='Tutorial' target='_self'>
+            <button style='
+                background-color:#4CAF50;
+                color:white;
+                border:none;
+                padding:10px 16px;
+                border-radius:8px;
+                font-size:14px;
+                cursor:pointer;
+            '>
+                Tutorial
+            </button>
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 # --- ABOUT SECTION ---
 st.header("About This Tool")
 st.markdown(
