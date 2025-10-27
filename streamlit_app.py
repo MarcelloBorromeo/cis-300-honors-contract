@@ -10,67 +10,46 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for terracotta background and teal accents
+# ✅ Proper CSS for terracotta background, teal accents, white headers
 st.markdown("""
     <style>
-    /* Main background */
-    .main {
-        background-color: #E2725B; /* Terracotta */
-        padding: 2rem;
+    /* Set the entire background to terracotta */
+    .stApp {
+        background-color: #E2725B !important;
+        background-image: none !important;
     }
-    
-    /* Content container */
-    .block-container {
-        background-color: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        border: 2px solid #008080; /* Teal accent */
+
+    /* Sidebar background (optional) */
+    section[data-testid="stSidebar"] {
+        background-color: #E2725B !important;
     }
-    
-    /* Header styling */
+
+    /* Main content background */
+    .main, .block-container {
+        background-color: #E2725B !important;
+        color: white !important;
+    }
+
+    /* White header text */
     h1, h2, h3 {
         color: white !important;
         font-weight: 700 !important;
     }
 
-    h1 {
-        font-size: 2.5rem !important;
-        text-align: center;
-        margin-bottom: 0.5rem !important;
+    /* Content box styling */
+    .content-box {
+        background-color: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 1rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        color: #333 !important;
+        border: 2px solid #008080; /* Teal border accent */
     }
 
-    h2 {
-        font-size: 1.8rem !important;
-        margin-top: 2rem !important;
-    }
-
-    h3 {
-        font-size: 1.3rem !important;
-    }
-
-    /* Description box */
-    .description-box {
-        background-color: #008080; /* Teal */
-        color: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        margin: 1.5rem 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Footer */
-    .footer {
-        text-align: center;
-        padding: 2rem 0 1rem 0;
-        color: white;
-        border-top: 2px solid #008080;
-        margin-top: 3rem;
-    }
-
-    /* Buttons */
+    /* Teal buttons */
     .stButton>button {
-        background-color: #008080 !important; /* Teal */
+        background-color: #008080 !important;
         color: white !important;
         font-size: 1.2rem;
         font-weight: 600;
@@ -88,22 +67,29 @@ st.markdown("""
         box-shadow: 0 6px 12px rgba(0, 128, 128, 0.4);
     }
 
-    /* Prediction result boxes */
-    .stSuccess, .stError {
-        padding: 1rem;
+    /* Description box */
+    .description-box {
+        background-color: #008080; /* Teal accent */
+        color: white;
+        padding: 1.5rem;
         border-radius: 10px;
-        font-weight: 600;
+        margin: 1.5rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* Divider lines and text color inside content */
-    p, label, .stMarkdown, .stSelectbox, .stSlider {
-        color: #333 !important;
-    }
-
-    /* Input labels and widgets */
-    .stSelectbox label, .stSlider label {
+    /* Input labels in teal */
+    label, .stSlider label, .stSelectbox label {
         color: #008080 !important;
-        font-weight: 600;
+        font-weight: 600 !important;
+    }
+
+    /* Footer */
+    .footer {
+        text-align: center;
+        padding: 2rem 0 1rem 0;
+        color: white;
+        border-top: 2px solid #008080;
+        margin-top: 3rem;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -122,20 +108,10 @@ expected_columns = data_info['expected_columns']
 categorical_unique_values = data_info['categorical_unique_values']
 
 # HEADER SECTION
-st.markdown("# 💳 Credit Default Prediction System")
+st.markdown("<h1>💳 Credit Default Prediction System</h1>", unsafe_allow_html=True)
+st.markdown("<hr style='border: 1px solid #008080;'>", unsafe_allow_html=True)
 
-# NAVIGATION
-col1, col2, col3 = st.columns([1, 1, 1])
-with col1:
-    st.markdown("### 📊 Model")
-with col2:
-    st.markdown("### 🔍 Analysis")
-with col3:
-    st.markdown("### ℹ️ About")
-
-st.markdown("---")
-
-# MAIN SECTION - Description
+# DESCRIPTION SECTION
 st.markdown("""
     <div class="description-box">
         <h2>🎯 Predict Loan Default Risk with Confidence</h2>
@@ -143,14 +119,13 @@ st.markdown("""
             Our advanced machine learning model analyzes creditworthiness using the renowned German Credit Dataset. 
             By evaluating key financial indicators—including loan duration, credit history, employment background, 
             and personal financial status—this tool provides accurate predictions of loan default probability. 
-            Simply configure your parameters below and receive instant risk assessment to make informed lending decisions. 
-            Whether you're a financial institution, credit analyst, or researcher, this tool helps you understand 
-            credit risk with precision and clarity.
+            Simply configure your parameters below and receive instant risk assessment to make informed lending decisions.
         </p>
     </div>
 """, unsafe_allow_html=True)
 
-# INPUT SECTION
+# INPUT SECTION (inside white box)
+st.markdown('<div class="content-box">', unsafe_allow_html=True)
 st.markdown("## 📝 Enter Customer Details")
 
 st.markdown("### 💰 Financial Information")
@@ -179,6 +154,7 @@ with col3:
     housing = st.selectbox('🏡 Housing', categorical_unique_values['housing'])
     job = st.selectbox('👔 Job', categorical_unique_values['job'])
     phone = st.selectbox('📞 Phone', categorical_unique_values['phone'])
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Collect user input
 user_input = {
@@ -213,7 +189,7 @@ if st.button('🔮 Predict Default Risk'):
     prediction = model.predict(input_encoded)
     prediction_proba = model.predict_proba(input_encoded)
 
-    st.markdown("---")
+    st.markdown('<div class="content-box">', unsafe_allow_html=True)
     st.markdown("## 📊 Prediction Results")
 
     result_col1, result_col2 = st.columns([2, 1])
@@ -242,6 +218,7 @@ if st.button('🔮 Predict Default Risk'):
                     <p style="color: #E2725B; font-weight: 600; margin: 0;">DECLINED</p>
                 </div>
             """, unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # FOOTER
 st.markdown("""
