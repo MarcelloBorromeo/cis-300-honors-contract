@@ -10,16 +10,16 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# === Custom CSS for Black Theme ===
+# === Custom CSS for Black Theme (Fixed Slider Glow) ===
 st.markdown("""
     <style>
     /* === GLOBAL BACKGROUND === */
     .stApp {
-        background-color: #000000 !important; /* solid black background */
+        background-color: #000000 !important; /* solid black */
         background-image: none !important;
     }
 
-    /* Remove Streamlit's white content background */
+    /* Remove Streamlit's default background */
     .main, .block-container {
         background: transparent !important;
         color: #FFFFFF !important;
@@ -27,7 +27,7 @@ st.markdown("""
 
     /* === CONTENT CONTAINER === */
     .block-container {
-        background-color: #121212; /* dark gray card background */
+        background-color: #121212;
         border-radius: 15px;
         padding: 2rem;
         box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
@@ -35,7 +35,7 @@ st.markdown("""
 
     /* === HEADERS === */
     h1 {
-        color: #4FC3F7; /* light teal-blue */
+        color: #4FC3F7;
         font-size: 2.5rem !important;
         font-weight: 700 !important;
         text-align: center;
@@ -74,7 +74,7 @@ st.markdown("""
 
     /* === BUTTONS === */
     .stButton>button {
-        background: linear-gradient(135deg, #1565C0 0%, #1E88E5 100%);
+        background: linear-gradient(135deg, #008080, #00b3b3);
         color: white;
         font-size: 1.2rem;
         font-weight: 600;
@@ -83,13 +83,13 @@ st.markdown("""
         border: none;
         width: 100%;
         margin-top: 2rem;
-        box-shadow: 0 4px 12px rgba(30,136,229,0.3);
+        box-shadow: 0 4px 12px rgba(0,128,128,0.3);
         transition: all 0.3s ease;
     }
 
     .stButton>button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(30,136,229,0.6);
+        box-shadow: 0 6px 16px rgba(0,128,128,0.6);
     }
 
     /* === SUCCESS/ERROR BOXES === */
@@ -106,12 +106,42 @@ st.markdown("""
         color: #EEEEEE !important;
     }
 
-    /* === SLIDER TRACK COLOR === */
-    div[data-baseweb="slider"] > div {
-        background-color: #4FC3F7 !important;
+    /* === FIX SLIDER GLOW & STYLE === */
+    /* Remove focus outlines */
+    div[data-baseweb="slider"] {
+        outline: none !important;
     }
 
-    /* === REMOVE EXCESS WHITE SPACE === */
+    /* Track background (unfilled portion) */
+    div[data-baseweb="slider"] > div:nth-child(1) {
+        background-color: #333 !important;
+    }
+
+    /* Active (filled) track color */
+    div[data-baseweb="slider"] > div:nth-child(2) {
+        background-color: #00b3b3 !important; /* teal accent */
+    }
+
+    /* Slider handle (thumb) */
+    div[data-baseweb="slider"] circle {
+        fill: #00b3b3 !important;
+        stroke: #00b3b3 !important;
+        r: 8 !important;
+    }
+
+    /* Remove blue halo when focused */
+    div[data-baseweb="slider"] svg:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Handle hover state */
+    div[data-baseweb="slider"] circle:hover {
+        fill: #00e0e0 !important;
+        stroke: #00e0e0 !important;
+    }
+
+    /* === REMOVE STREAMLIT DEFAULT FOOTER === */
     header, footer {visibility: hidden !important;}
     </style>
 """, unsafe_allow_html=True)
