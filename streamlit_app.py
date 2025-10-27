@@ -2,15 +2,16 @@ import streamlit as st
 import pickle
 import pandas as pd
 
-# Define the filename for the pickle file
+# --- PAGE CONFIG ---
+st.set_page_config(page_title="Credit Default Prediction", layout="centered")
+
+# --- LOAD MODEL AND DATA INFO ---
 filename = 'decision_tree_model.pkl'
 data_info_filename = 'data_info.pkl'
 
-# Load the model from the pickle file
 with open(filename, 'rb') as file:
     model = pickle.load(file)
 
-# Load data info (including expected columns and categorical values)
 with open(data_info_filename, 'rb') as file:
     data_info = pickle.load(file)
 
@@ -25,30 +26,33 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Display image below the title
+# --- DISPLAY IMAGE ---
 st.image("loan.jpeg", use_container_width=True)
 
 # --- TUTORIAL BUTTON (UPPER RIGHT) ---
 st.markdown(
     """
-    <div style='position: absolute; top: 25px; right: 30px;'>
-        <a href='Tutorial' target='_self'>
-            <button style='
-                background-color:#FF0000;
-                color:white;
-                border:none;
-                padding:10px 16px;
-                border-radius:8px;
-                font-size:14px;
-                cursor:pointer;
-            '>
-                Tutorial
-            </button>
-        </a>
-    </div>
+    <style>
+    .floating-btn {
+        position: fixed;
+        top: 25px;
+        right: 30px;
+        background-color: #FF0000;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        z-index: 9999;
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
+
+if st.button("🎓 Tutorial", key="tutorial_btn", help="Open the tutorial page"):
+    st.switch_page("pages/Tutorial.py")
 
 # --- ABOUT SECTION ---
 st.header("About This Tool")
@@ -104,8 +108,8 @@ user_input = {
     'housing': housing,
     'job': job,
     'phone': phone,
-    'existing_loans_count': 1,  # Default assumption
-    'dependents': 1             # Default assumption
+    'existing_loans_count': 1,
+    'dependents': 1
 }
 
 input_df = pd.DataFrame([user_input])

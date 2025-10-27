@@ -11,15 +11,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.image("loan.jpeg", use_column_width=True)
+st.image("loan.jpeg", use_container_width=True)
 
 st.markdown(
     """
     <div style='background-color:#2c2c2c; color:white; padding:18px; border-radius:10px; border:1px solid #444; text-align:justify; font-size:16px;'>
     This tutorial will guide you through using the <b>Credit Default Prediction Tool</b>. 
     Our machine learning model analyzes financial and personal information to predict the likelihood 
-    that a customer may default on a loan. It is based on the <b>German Credit Dataset</b>, a well-known dataset 
-    used in credit risk modeling.
+    that a customer may default on a loan. It is based on the <b>German Credit Dataset</b>, 
+    a well-known dataset used in credit risk modeling.
     </div>
     """,
     unsafe_allow_html=True
@@ -42,7 +42,6 @@ st.markdown(
 st.header("2. Categorical Features")
 st.markdown("Each dropdown represents a coded financial category from the German Credit Dataset. Expand each section to see what the codes mean:")
 
-# --- CHECKING BALANCE ---
 with st.expander("💳 Checking Balance"):
     st.markdown(
         """
@@ -55,7 +54,6 @@ with st.expander("💳 Checking Balance"):
         """
     )
 
-# --- CREDIT HISTORY ---
 with st.expander("📜 Credit History"):
     st.markdown(
         """
@@ -69,7 +67,6 @@ with st.expander("📜 Credit History"):
         """
     )
 
-# --- PURPOSE ---
 with st.expander("🎯 Purpose of the Loan"):
     st.markdown(
         """
@@ -89,7 +86,6 @@ with st.expander("🎯 Purpose of the Loan"):
         """
     )
 
-# --- SAVINGS BALANCE ---
 with st.expander("💰 Savings Balance"):
     st.markdown(
         """
@@ -103,7 +99,6 @@ with st.expander("💰 Savings Balance"):
         """
     )
 
-# --- EMPLOYMENT DURATION ---
 with st.expander("👷 Employment Duration"):
     st.markdown(
         """
@@ -117,7 +112,6 @@ with st.expander("👷 Employment Duration"):
         """
     )
 
-# --- OTHER CREDIT ---
 with st.expander("🏦 Other Credit"):
     st.markdown(
         """
@@ -129,7 +123,6 @@ with st.expander("🏦 Other Credit"):
         """
     )
 
-# --- HOUSING ---
 with st.expander("🏠 Housing Type"):
     st.markdown(
         """
@@ -141,7 +134,6 @@ with st.expander("🏠 Housing Type"):
         """
     )
 
-# --- JOB ---
 with st.expander("💼 Job Type"):
     st.markdown(
         """
@@ -154,7 +146,6 @@ with st.expander("💼 Job Type"):
         """
     )
 
-# --- PHONE ---
 with st.expander("📞 Phone Availability"):
     st.markdown(
         """
@@ -168,7 +159,7 @@ with st.expander("📞 Phone Availability"):
 # --- FOOTER / RETURN LINK ---
 st.markdown("<hr>", unsafe_allow_html=True)
 if st.button("⬅️ Back to Credit Default App"):
-    st.markdown("<meta http-equiv='refresh' content='0; url=../' />", unsafe_allow_html=True)
+    st.switch_page("streamlit_app.py")
 
 st.markdown(
     """
