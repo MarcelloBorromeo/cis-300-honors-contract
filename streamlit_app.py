@@ -37,7 +37,6 @@ st.markdown("""
         border-bottom: 4px solid #fbbf24;
         box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
     }
-    /* Header styling */
     h1 {
         color: #fbbf24 !important;
         font-size: 3.5rem !important;
@@ -85,22 +84,14 @@ st.markdown("""
         box-shadow: 0 6px 24px rgba(59, 130, 246, 0.3);
         border: 2px solid #3b82f6;
     }
-    .description-box h2 {
-        border-bottom: 3px solid #fbbf24 !important;
-    }
     /* Image containers */
     .image-container {
         border-radius: 15px;
         overflow: hidden;
         border: 3px solid #3b82f6;
         box-shadow: 0 6px 24px rgba(59, 130, 246, 0.4);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
         background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
         padding: 0.5rem;
-    }
-    .image-container:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 32px rgba(59, 130, 246, 0.6);
     }
     /* Input labels */
     label {
@@ -210,6 +201,7 @@ st.markdown("""
         height: 2px !important;
         background: linear-gradient(90deg, transparent, #3b82f6, transparent) !important;
         margin: 2.5rem 0 !important;
+        width: 100%;
     }
     /* Success/Error messages */
     .stSuccess, .stError {
@@ -253,6 +245,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # MAIN SECTION
+st.markdown('<div class="main-section">', unsafe_allow_html=True)
+
 # Load and display images
 try:
     col1, col2, col3 = st.columns(3)
@@ -271,27 +265,26 @@ try:
         euro_img = Image.open('euro_image.jpeg')
         st.image(euro_img, use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
-except:
-    pass  # If images aren't found, continue without them
+except FileNotFoundError:
+    st.warning("Some images could not be loaded. Please check the file paths.")
 
 # Description
 st.markdown("""
     <div class="description-box">
         <h2>🎯 Predict Loan Default Risk with Confidence</h2>
         <p style="font-size: 1.15rem; line-height: 1.8; color: #e5e7eb;">
-            Our advanced machine learning model analyzes creditworthiness using the renowned German Credit Dataset. 
-            By evaluating key financial indicators—including loan duration, credit history, employment background, 
-            and personal financial status—this tool provides accurate predictions of loan default probability. 
-            Simply configure your parameters below and receive instant risk assessment to make informed lending decisions. 
-            Whether you're a financial institution, credit analyst, or researcher, this tool helps you understand 
+            Our advanced machine learning model analyzes creditworthiness using the renowned German Credit Dataset.
+            By evaluating key financial indicators—including loan duration, credit history, employment background,
+            and personal financial status—this tool provides accurate predictions of loan default probability.
+            Simply configure your parameters below and receive instant risk assessment to make informed lending decisions.
+            Whether you're a financial institution, credit analyst, or researcher, this tool helps you understand
             credit risk with precision and clarity.
         </p>
     </div>
 """, unsafe_allow_html=True)
 
 # Input Form
-st.markdown('<div class="main-section">', unsafe_allow_html=True)
-st.markdown("## 📝 Enter Customer Details")
+st.markdown("<h2>📝 Enter Customer Details</h2>", unsafe_allow_html=True)
 
 # Numerical Features Section
 st.markdown('<div class="input-section">', unsafe_allow_html=True)
@@ -302,8 +295,6 @@ percent_of_income = st.slider('Percent of Income', min_value=1, max_value=4, val
 years_at_residence = st.slider('Years at Residence', min_value=1, max_value=4, value=2)
 age = st.slider('Age', min_value=18, max_value=75, value=30)
 st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown("---")
 
 # Categorical Features Section
 st.markdown('<div class="input-section">', unsafe_allow_html=True)
@@ -366,11 +357,11 @@ if st.button('🔮 Predict Default Risk'):
         st.success('✅ Prediction: No Default - Low Risk Customer')
         st.markdown(f"""
             <div class="prob-text">
-                <strong>Probability of No Default:</strong> 
+                <strong>Probability of No Default:</strong>
                 <span style='color: #10b981; font-size: 1.5rem; font-weight: 800;'>{prediction_proba[0][0]:.1%}</span>
             </div>
             <div class="prob-text">
-                <strong>Probability of Default:</strong> 
+                <strong>Probability of Default:</strong>
                 <span style='color: #6b7280;'>{prediction_proba[0][1]:.1%}</span>
             </div>
         """, unsafe_allow_html=True)
@@ -380,11 +371,11 @@ if st.button('🔮 Predict Default Risk'):
         st.error('⚠️ Prediction: Default - High Risk Customer')
         st.markdown(f"""
             <div class="prob-text">
-                <strong>Probability of Default:</strong> 
+                <strong>Probability of Default:</strong>
                 <span style='color: #fca5a5; font-size: 1.5rem; font-weight: 800;'>{prediction_proba[0][1]:.1%}</span>
             </div>
             <div class="prob-text">
-                <strong>Probability of No Default:</strong> 
+                <strong>Probability of No Default:</strong>
                 <span style='color: #6b7280;'>{prediction_proba[0][0]:.1%}</span>
             </div>
         """, unsafe_allow_html=True)
