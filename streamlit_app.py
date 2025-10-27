@@ -36,27 +36,9 @@ st.markdown("""
     .header-section {
         background: linear-gradient(135deg, #dc2626 0%, #7c2d12 50%, #991b1b 100%);
         padding: 3rem 6rem;
-        margin: 0 -6rem 3rem -6rem;
+        margin: 0 -6rem 2rem -6rem;
         border-bottom: 4px solid #fbbf24;
         box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .header-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-        opacity: 0.3;
-    }
-    
-    .header-section h1 {
-        position: relative;
-        z-index: 1;
     }
     
     /* Header styling */
@@ -71,36 +53,7 @@ st.markdown("""
         text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
     }
     
-    /* NAVIGATION SECTION */
-    .navigation-section {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-        padding: 1.5rem 6rem;
-        margin: 0 -6rem 3rem -6rem;
-        border-bottom: 2px solid #3b82f6;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    
-    .nav-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-    }
-    
-    .nav-item {
-        color: #93c5fd !important;
-        font-size: 1.1rem !important;
-        font-weight: 600 !important;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-    
-    .nav-item:hover {
-        background-color: rgba(59, 130, 246, 0.2);
-        color: #60a5fa !important;
-    }
+
     
     /* MAIN SECTION */
     .main-section {
@@ -141,18 +94,6 @@ st.markdown("""
         margin: 2rem 0;
         box-shadow: 0 6px 24px rgba(59, 130, 246, 0.3);
         border: 2px solid #3b82f6;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .description-box::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
     }
     
     .description-box h2 {
@@ -340,21 +281,7 @@ categorical_unique_values = data_info['categorical_unique_values']
 # ============================================
 st.markdown("""
     <div class="header-section">
-        <h1>Credit Default Prediction Tool</h1>
-    </div>
-""", unsafe_allow_html=True)
-
-# ============================================
-# NAVIGATION SECTION
-# ============================================
-st.markdown("""
-    <div class="navigation-section">
-        <div class="nav-content">
-            <span class="nav-item">🏠 Home</span>
-            <span class="nav-item">📊 Predict</span>
-            <span class="nav-item">📈 Analytics</span>
-            <span class="nav-item">ℹ️ About</span>
-        </div>
+        <h1>💳 Credit Default Prediction System</h1>
     </div>
 """, unsafe_allow_html=True)
 
@@ -389,12 +316,14 @@ except:
 # Description
 st.markdown("""
     <div class="description-box">
-        <h2>Predict Loan Default Risk with Confidence!</h2>
+        <h2>🎯 Predict Loan Default Risk with Confidence</h2>
         <p style="font-size: 1.15rem; line-height: 1.8; color: #e5e7eb;">
-            This machine learning model brings the renowned German Credit Dataset to life — analyzing the creditworthiness of German citizens with data-driven precision.
-By digging into key financial details like loan duration, credit history, employment background, and personal finances, it predicts the probability of loan default with remarkable accuracy.
-Just tweak the parameters below and watch as real-time insights unfold, giving you an instant risk profile to power smarter lending decisions!
-Whether you’re a financial institution assessing applicants, a credit analyst exploring trends, or a researcher experimenting with predictive modeling, this tool transforms credit risk analysis into an engaging, intuitive experience.
+            Our advanced machine learning model analyzes creditworthiness using the renowned German Credit Dataset. 
+            By evaluating key financial indicators—including loan duration, credit history, employment background, 
+            and personal financial status—this tool provides accurate predictions of loan default probability. 
+            Simply configure your parameters below and receive instant risk assessment to make informed lending decisions. 
+            Whether you're a financial institution, credit analyst, or researcher, this tool helps you understand 
+            credit risk with precision and clarity.
         </p>
     </div>
 """, unsafe_allow_html=True)
