@@ -32,7 +32,7 @@ st.image("loan.jpeg", use_container_width=True)
 st.markdown(
     """
     <div style='position: absolute; top: 25px; right: 30px;'>
-        <a href='/Tutorial' target='_self'>
+        <a href='Tutorial' target='_self'>
             <button style='
                 background-color:#FF0000;
                 color:white;
