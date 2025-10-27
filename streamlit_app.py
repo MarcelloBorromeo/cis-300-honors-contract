@@ -25,10 +25,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- DESCRIPTION SECTION ---
+# --- ABOUT SECTION ---
+st.header("About This Tool")
 st.markdown(
     """
-    <div style='text-align: justify; font-size:16px;'>
+    <div style='background-color:#f9f9f9; padding:15px; border-radius:10px; border:1px solid #ddd; text-align:justify; font-size:16px;'>
     Our advanced machine learning model analyzes creditworthiness using the renowned <b>German Credit Dataset</b>. 
     By evaluating key financial indicators—including loan duration, credit history, employment background, 
     and personal financial status—this tool provides accurate predictions of loan default probability. 
@@ -40,6 +41,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# --- INPUT SECTION ---
 st.header('Enter Customer Details')
 
 # --- NUMERICAL FEATURES ---
