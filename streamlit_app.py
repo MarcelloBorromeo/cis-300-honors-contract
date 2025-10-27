@@ -10,72 +10,71 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for styling
+# === Custom CSS for Black Theme ===
 st.markdown("""
     <style>
-    /* Main background */
-    .main {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem;
+    /* === GLOBAL BACKGROUND === */
+    .stApp {
+        background-color: #000000 !important; /* solid black background */
+        background-image: none !important;
     }
-    
-    /* Content container */
+
+    /* Remove Streamlit's white content background */
+    .main, .block-container {
+        background: transparent !important;
+        color: #FFFFFF !important;
+    }
+
+    /* === CONTENT CONTAINER === */
     .block-container {
-        background-color: white;
+        background-color: #121212; /* dark gray card background */
         border-radius: 15px;
         padding: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
     }
-    
-    /* Header styling */
+
+    /* === HEADERS === */
     h1 {
-        color: #667eea;
+        color: #4FC3F7; /* light teal-blue */
         font-size: 2.5rem !important;
         font-weight: 700 !important;
         text-align: center;
         margin-bottom: 0.5rem !important;
     }
-    
+
     h2 {
-        color: #764ba2;
+        color: #81D4FA;
         font-size: 1.8rem !important;
         margin-top: 2rem !important;
     }
-    
+
     h3 {
-        color: #667eea;
+        color: #4FC3F7;
         font-size: 1.3rem !important;
     }
-    
-    /* Description box */
+
+    /* === DESCRIPTION BOX === */
     .description-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0D47A1 0%, #1976D2 100%);
         color: white;
         padding: 1.5rem;
         border-radius: 10px;
         margin: 1.5rem 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.5);
     }
-    
-    /* Footer */
+
+    /* === FOOTER === */
     .footer {
         text-align: center;
         padding: 2rem 0 1rem 0;
-        color: #666;
-        border-top: 2px solid #667eea;
+        color: #AAA;
+        border-top: 1px solid #333;
         margin-top: 3rem;
     }
-    
-    /* Prediction result boxes */
-    .stSuccess, .stError {
-        padding: 1rem;
-        border-radius: 10px;
-        font-weight: 600;
-    }
-    
-    /* Button styling */
+
+    /* === BUTTONS === */
     .stButton>button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1565C0 0%, #1E88E5 100%);
         color: white;
         font-size: 1.2rem;
         font-weight: 600;
@@ -84,34 +83,56 @@ st.markdown("""
         border: none;
         width: 100%;
         margin-top: 2rem;
+        box-shadow: 0 4px 12px rgba(30,136,229,0.3);
+        transition: all 0.3s ease;
     }
-    
+
     .stButton>button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 6px 16px rgba(30,136,229,0.6);
     }
+
+    /* === SUCCESS/ERROR BOXES === */
+    .stSuccess, .stError {
+        padding: 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+        background-color: #121212 !important;
+        color: #FFFFFF !important;
+    }
+
+    /* === TEXT + LABELS === */
+    label, p, .stMarkdown, .stSelectbox, .stSlider {
+        color: #EEEEEE !important;
+    }
+
+    /* === SLIDER TRACK COLOR === */
+    div[data-baseweb="slider"] > div {
+        background-color: #4FC3F7 !important;
+    }
+
+    /* === REMOVE EXCESS WHITE SPACE === */
+    header, footer {visibility: hidden !important;}
     </style>
 """, unsafe_allow_html=True)
 
-# Define the filename for the pickle file
+# === MODEL LOADING ===
 filename = 'decision_tree_model.pkl'
 data_info_filename = 'data_info.pkl'
 
-# Load the model from the pickle file
 with open(filename, 'rb') as file:
     model = pickle.load(file)
 
-# Load data info (including expected columns and categorical values)
 with open(data_info_filename, 'rb') as file:
     data_info = pickle.load(file)
 
 expected_columns = data_info['expected_columns']
 categorical_unique_values = data_info['categorical_unique_values']
 
-# HEADER SECTION
+# === HEADER ===
 st.markdown("# 💳 Credit Default Prediction System")
 
-# NAVIGATION (using columns for a clean layout)
+# === NAVIGATION BAR ===
 col1, col2, col3 = st.columns([1, 1, 1])
 with col1:
     st.markdown("### 📊 Model")
@@ -122,7 +143,7 @@ with col3:
 
 st.markdown("---")
 
-# MAIN SECTION - Description
+# === DESCRIPTION ===
 st.markdown("""
     <div class="description-box">
         <h2 style="color: white; margin-top: 0;">🎯 Predict Loan Default Risk with Confidence</h2>
@@ -137,10 +158,9 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# MAIN SECTION - Input Form
+# === INPUT FORM ===
 st.markdown("## 📝 Enter Customer Details")
 
-# Numerical Features Section
 st.markdown("### 💰 Financial Information")
 col1, col2 = st.columns(2)
 
@@ -155,9 +175,7 @@ with col2:
 
 st.markdown("---")
 
-# Categorical Features Section
 st.markdown("### 📋 Categorical Features")
-
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -175,7 +193,7 @@ with col3:
     job = st.selectbox('👔 Job', categorical_unique_values['job'])
     phone = st.selectbox('📞 Phone', categorical_unique_values['phone'])
 
-# Collect user input into a dictionary
+# === INPUT DATAFRAME ===
 user_input = {
     'months_loan_duration': months_loan_duration,
     'amount': amount,
@@ -195,19 +213,18 @@ user_input = {
     'dependents': 1
 }
 
-# Convert user input to DataFrame
 input_df = pd.DataFrame([user_input])
 
-# Apply one-hot encoding
+# === ONE-HOT ENCODING ===
 input_encoded = pd.get_dummies(input_df, drop_first=True, dtype=int)
 
-# Ensure all columns from training data are present and in the same order
 for col in expected_columns:
     if col not in input_encoded.columns:
         input_encoded[col] = 0
+
 input_encoded = input_encoded[expected_columns]
 
-# Make prediction
+# === PREDICTION ===
 if st.button('🔮 Predict Default Risk'):
     prediction = model.predict(input_encoded)
     prediction_proba = model.predict_proba(input_encoded)
@@ -215,7 +232,6 @@ if st.button('🔮 Predict Default Risk'):
     st.markdown("---")
     st.markdown("## 📊 Prediction Results")
     
-    # Create columns for better layout
     result_col1, result_col2 = st.columns([2, 1])
     
     with result_col1:
@@ -229,27 +245,26 @@ if st.button('🔮 Predict Default Risk'):
             st.markdown(f"**Probability of No Default:** `{prediction_proba[0][0]:.1%}`")
     
     with result_col2:
-        # Visual indicator
         if prediction[0] == 0:
             st.markdown("""
-                <div style="background-color: #d4edda; padding: 2rem; border-radius: 10px; text-align: center;">
-                    <h1 style="color: #155724; font-size: 4rem; margin: 0;">✓</h1>
-                    <p style="color: #155724; font-weight: 600; margin: 0;">APPROVED</p>
+                <div style="background-color: #1B5E20; padding: 2rem; border-radius: 10px; text-align: center;">
+                    <h1 style="color: #C8E6C9; font-size: 4rem; margin: 0;">✓</h1>
+                    <p style="color: #C8E6C9; font-weight: 600; margin: 0;">APPROVED</p>
                 </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown("""
-                <div style="background-color: #f8d7da; padding: 2rem; border-radius: 10px; text-align: center;">
-                    <h1 style="color: #721c24; font-size: 4rem; margin: 0;">✗</h1>
-                    <p style="color: #721c24; font-weight: 600; margin: 0;">DECLINED</p>
+                <div style="background-color: #B71C1C; padding: 2rem; border-radius: 10px; text-align: center;">
+                    <h1 style="color: #FFCDD2; font-size: 4rem; margin: 0;">✗</h1>
+                    <p style="color: #FFCDD2; font-weight: 600; margin: 0;">DECLINED</p>
                 </div>
             """, unsafe_allow_html=True)
 
-# FOOTER SECTION
+# === FOOTER ===
 st.markdown("""
     <div class="footer">
         <p><strong>Credit Default Prediction System</strong></p>
         <p>Powered by Machine Learning | German Credit Dataset</p>
-        <p style="font-size: 0.9rem; color: #999;">© 2025 | Built with Streamlit 🎈</p>
+        <p style="font-size: 0.9rem; color: #888;">© 2025 | Built with Streamlit 🎈</p>
     </div>
 """, unsafe_allow_html=True)
