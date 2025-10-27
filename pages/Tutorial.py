@@ -47,9 +47,9 @@ with st.expander("💳 Checking Balance"):
         """
         | Code | Meaning |
         |------|----------|
-        | **A11** | Balance < 0 DM (overdrawn) |
-        | **A12** | 0 ≤ Balance < 200 DM |
-        | **A13** | Balance ≥ 200 DM |
+        | **A11** | Balance < 0 Euro (overdrawn) |
+        | **A12** | 0 ≤ Balance < 200 Euro |
+        | **A13** | Balance ≥ 200 Euro |
         | **A14** | No checking account |
         """
     )
@@ -91,10 +91,10 @@ with st.expander("💰 Savings Balance"):
         """
         | Code | Meaning |
         |------|----------|
-        | **A61** | < 100 DM |
-        | **A62** | 100 ≤ Savings < 500 DM |
-        | **A63** | 500 ≤ Savings < 1000 DM |
-        | **A64** | ≥ 1000 DM |
+        | **A61** | < 100 Euro |
+        | **A62** | 100 ≤ Savings < 500 Euro |
+        | **A63** | 500 ≤ Savings < 1000 Euro |
+        | **A64** | ≥ 1000 Euro |
         | **A65** | Unknown / No savings account |
         """
     )
