@@ -25,6 +25,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# --- TITLE SECTION ---
+st.markdown(
+    """
+    <h1 style='text-align: center;'>Credit Default Prediction</h1>
+    """,
+    unsafe_allow_html=True
+)
+
+# Display image below the title
+st.image("loan.jpeg", use_column_width=True)
+
 # --- ABOUT SECTION ---
 st.header("About This Tool")
 st.markdown(
