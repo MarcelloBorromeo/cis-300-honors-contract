@@ -2,13 +2,15 @@ import streamlit as st
 import pickle
 import pandas as pd
 
-# --- LOAD MODEL AND DATA INFO ---
+# Define the filename for the pickle file
 filename = 'decision_tree_model.pkl'
 data_info_filename = 'data_info.pkl'
 
+# Load the model from the pickle file
 with open(filename, 'rb') as file:
     model = pickle.load(file)
 
+# Load data info (including expected columns and categorical values)
 with open(data_info_filename, 'rb') as file:
     data_info = pickle.load(file)
 
@@ -16,9 +18,14 @@ expected_columns = data_info['expected_columns']
 categorical_unique_values = data_info['categorical_unique_values']
 
 # --- IMAGE SECTION ---
-st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
-st.image("loan.jpeg", width=400)
-st.markdown("</div>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <div style='text-align: center;'>
+        <img src='loan_image.jpeg' width='400'>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # --- TITLE SECTION ---
 st.markdown(
