@@ -26,7 +26,7 @@ st.markdown(
 )
 
 # Display image below the title
-st.image("loan.jpeg", use_column_width=True)
+st.image("loan.jpeg", use_container_width=True)
 
 # --- ABOUT SECTION ---
 st.header("About This Tool")
