@@ -10,73 +10,68 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for new color palette
+# Custom CSS for terracotta background and teal accents
 st.markdown("""
     <style>
     /* Main background */
     .main {
-        background: linear-gradient(135deg, #ffffff 0%, #E2725B 50%, #008080 100%);
+        background-color: #E2725B; /* Terracotta */
         padding: 2rem;
     }
     
     /* Content container */
     .block-container {
-        background-color: #ffffff;
+        background-color: white;
         border-radius: 15px;
         padding: 2rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        border: 2px solid #008080; /* Teal accent */
     }
     
     /* Header styling */
-    h1 {
-        color: #E2725B;
-        font-size: 2.5rem !important;
+    h1, h2, h3 {
+        color: white !important;
         font-weight: 700 !important;
+    }
+
+    h1 {
+        font-size: 2.5rem !important;
         text-align: center;
         margin-bottom: 0.5rem !important;
     }
-    
+
     h2 {
-        color: #008080;
         font-size: 1.8rem !important;
         margin-top: 2rem !important;
     }
-    
+
     h3 {
-        color: #E2725B;
         font-size: 1.3rem !important;
     }
-    
+
     /* Description box */
     .description-box {
-        background: linear-gradient(135deg, #E2725B 0%, #008080 100%);
+        background-color: #008080; /* Teal */
         color: white;
         padding: 1.5rem;
         border-radius: 10px;
         margin: 1.5rem 0;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    
+
     /* Footer */
     .footer {
         text-align: center;
         padding: 2rem 0 1rem 0;
-        color: #555;
-        border-top: 2px solid #E2725B;
+        color: white;
+        border-top: 2px solid #008080;
         margin-top: 3rem;
     }
-    
-    /* Prediction result boxes */
-    .stSuccess, .stError {
-        padding: 1rem;
-        border-radius: 10px;
-        font-weight: 600;
-    }
-    
-    /* Button styling */
+
+    /* Buttons */
     .stButton>button {
-        background: linear-gradient(135deg, #E2725B 0%, #008080 100%);
-        color: white;
+        background-color: #008080 !important; /* Teal */
+        color: white !important;
         font-size: 1.2rem;
         font-weight: 600;
         padding: 0.75rem 2rem;
@@ -84,11 +79,31 @@ st.markdown("""
         border: none;
         width: 100%;
         margin-top: 2rem;
+        transition: all 0.3s ease;
     }
-    
+
     .stButton>button:hover {
+        background-color: #006666 !important;
         transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 128, 128, 0.3);
+        box-shadow: 0 6px 12px rgba(0, 128, 128, 0.4);
+    }
+
+    /* Prediction result boxes */
+    .stSuccess, .stError {
+        padding: 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    /* Divider lines and text color inside content */
+    p, label, .stMarkdown, .stSelectbox, .stSlider {
+        color: #333 !important;
+    }
+
+    /* Input labels and widgets */
+    .stSelectbox label, .stSlider label {
+        color: #008080 !important;
+        font-weight: 600;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -123,7 +138,7 @@ st.markdown("---")
 # MAIN SECTION - Description
 st.markdown("""
     <div class="description-box">
-        <h2 style="color: white; margin-top: 0;">🎯 Predict Loan Default Risk with Confidence</h2>
+        <h2>🎯 Predict Loan Default Risk with Confidence</h2>
         <p style="font-size: 1.1rem; line-height: 1.6;">
             Our advanced machine learning model analyzes creditworthiness using the renowned German Credit Dataset. 
             By evaluating key financial indicators—including loan duration, credit history, employment background, 
@@ -233,6 +248,6 @@ st.markdown("""
     <div class="footer">
         <p><strong>Credit Default Prediction System</strong></p>
         <p>Powered by Machine Learning | German Credit Dataset</p>
-        <p style="font-size: 0.9rem; color: #999;">© 2025 | Built with Streamlit 🎈</p>
+        <p style="font-size: 0.9rem;">© 2025 | Built with Streamlit 🎈</p>
     </div>
 """, unsafe_allow_html=True)
