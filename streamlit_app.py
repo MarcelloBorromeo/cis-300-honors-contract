@@ -49,7 +49,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.page_link("pages/Tutorial.py", label="Tutorial", icon="🎓")
+st.page_link("pages/Tutorial", label="Tutorial", icon="🎓")
 
 # --- ABOUT SECTION ---
 st.header("About This Tool")
