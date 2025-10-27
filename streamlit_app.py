@@ -110,3 +110,14 @@ if st.button('Predict'):
         st.error('Prediction: Default')
         st.write(f'Probability of Default: {prediction_proba[0][1]:.2f}')
         st.write(f'Probability of No Default: {prediction_proba[0][0]:.2f}')
+
+# --- FOOTER ---
+st.markdown(
+    """
+    <hr style="border:1px solid #444; margin-top:40px; margin-bottom:10px;">
+    <p style="text-align:center; color:gray; font-size:14px;">
+    © Marcello Borromeo | CIS 300 Honors Contract
+    </p>
+    """,
+    unsafe_allow_html=True
+)
