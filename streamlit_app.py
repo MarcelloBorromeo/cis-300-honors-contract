@@ -129,7 +129,7 @@ if st.button('Predict'):
     with st.spinner('🔍 Analyzing creditworthiness...'):
         prediction = model.predict(input_encoded)
         prediction_proba = model.predict_proba(input_encoded)
-        time.sleep(3)  # Simulate processing time for effect
+        time.sleep(5)  # Simulate processing time for effect
     
     default_risk_pct = prediction_proba[0][1] * 100
     
