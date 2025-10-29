@@ -173,4 +173,16 @@ if st.button('Predict'):
             <b>Interpretation:</b> {interpretation}
         </div>
         """,
-        unsafe_allow_
+        unsafe_allow_html=True
+    )
+
+# --- FOOTER ---
+st.markdown(
+    """
+    <hr style="border:1px solid #444; margin-top:40px; margin-bottom:10px;">
+    <p style="text-align:center; color:gray; font-size:14px;">
+    © Marcello Borromeo | CIS 300 Honors Contract
+    </p>
+    """,
+    unsafe_allow_html=True
+)
