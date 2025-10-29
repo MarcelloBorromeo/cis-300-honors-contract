@@ -126,16 +126,6 @@ input_encoded = input_encoded[expected_columns]
 if st.button('Predict'):
     prediction = model.predict(input_encoded)
     prediction_proba = model.predict_proba(input_encoded)
-
-    st.subheader('Prediction Result:')
-    if prediction[0] == 0:
-        st.success('Prediction: No Default')
-        st.write(f'Probability of No Default: {prediction_proba[0][0]:.2f}')
-        st.write(f'Probability of Default: {prediction_proba[0][1]:.2f}')
-    else:
-        st.error('Prediction: Default')
-        st.write(f'Probability of Default: {prediction_proba[0][1]:.2f}')
-        st.write(f'Probability of No Default: {prediction_proba[0][0]:.2f}')
     
     # --- GRADIENT PROGRESS BAR VISUALIZATION ---
     st.markdown("---")
