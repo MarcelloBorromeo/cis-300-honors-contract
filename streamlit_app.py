@@ -129,11 +129,11 @@ if st.button('Predict'):
     with st.spinner('🔍 Analyzing creditworthiness...'):
         prediction = model.predict(input_encoded)
         prediction_proba = model.predict_proba(input_encoded)
-        time.sleep(5)  # Simulate processing time for effect
+        time.sleep(1)  # Simulate processing time for effect
     
     default_risk_pct = prediction_proba[0][1] * 100
     
-    # --- GRADIENT PROGRESS BAR VISUALIZATION WITH FADE-IN ---
+    # --- ANIMATED GRADIENT PROGRESS BAR WITH FADE-IN ---
     st.markdown("---")
     
     # Create placeholder for animated content
@@ -153,31 +153,62 @@ if st.button('Predict'):
             }}
         }}
         
+        @keyframes fillBar {{
+            from {{
+                width: 0%;
+            }}
+            to {{
+                width: {default_risk_pct}%;
+            }}
+        }}
+        
+        @keyframes fadeInLabel {{
+            from {{
+                opacity: 0;
+                transform: translateX(-50%) scale(0.8);
+            }}
+            to {{
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }}
+        }}
+        
         .fade-in-section {{
             animation: fadeInUp 0.8s ease-out forwards;
+        }}
+        
+        .progress-bar-fill {{
+            animation: fillBar 1.5s ease-out forwards;
+        }}
+        
+        .percentage-label {{
+            animation: fadeInLabel 0.6s ease-out 1.3s forwards;
+            opacity: 0;
         }}
         </style>
         
         <div class="fade-in-section">
             <h3>Default Probability</h3>
-            <div style='margin-top:20px;'>
-                <div style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
-                            height:40px; border-radius:20px; position:relative;'>
-                    <div style='position:absolute; left:{default_risk_pct}%; top:-35px; 
-                                transform:translateX(-50%); text-align:center;'>
-                        <div style='background-color:white; color:black; padding:5px 12px; 
-                                    border-radius:5px; font-weight:bold; border:2px solid #333;'>
-                            {default_risk_pct:.1f}%
-                        </div>
-                        <div style='width:0; height:0; border-left:8px solid transparent; 
-                                    border-right:8px solid transparent; border-top:8px solid #333; 
-                                    margin:0 auto;'></div>
+            <div style='margin-top:50px; margin-bottom:20px;'>
+                <div style='background-color:#e0e0e0; height:40px; border-radius:20px; position:relative; overflow:hidden;'>
+                    <div class='progress-bar-fill' style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
+                                height:100%; border-radius:20px; position:absolute; left:0; top:0;'>
                     </div>
                 </div>
-                <div style='display:flex; justify-content:space-between; margin-top:10px; font-size:14px;'>
-                    <span>0% (No Risk)</span>
-                    <span>50% (Threshold)</span>
-                    <span>100% (Certain Default)</span>
+                <div style='position:relative; height:50px;'>
+                    <div class='percentage-label' style='position:absolute; left:{default_risk_pct}%; top:10px; 
+                                transform:translateX(-50%); text-align:center;'>
+                        <div style='background-color:white; color:black; padding:8px 16px; 
+                                    border-radius:8px; font-weight:bold; border:3px solid #333;
+                                    box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-size:16px;'>
+                            {default_risk_pct:.1f}%
+                        </div>
+                    </div>
+                </div>
+                <div style='display:flex; justify-content:space-between; margin-top:5px; font-size:14px; color:#666;'>
+                    <span style='font-weight:500;'>0% (No Risk)</span>
+                    <span style='font-weight:500;'>50% (Threshold)</span>
+                    <span style='font-weight:500;'>100% (Certain Default)</span>
                 </div>
             </div>
         </div>
