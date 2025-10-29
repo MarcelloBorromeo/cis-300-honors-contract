@@ -136,6 +136,36 @@ if st.button('Predict'):
         st.error('Prediction: Default')
         st.write(f'Probability of Default: {prediction_proba[0][1]:.2f}')
         st.write(f'Probability of No Default: {prediction_proba[0][0]:.2f}')
+
+     # --- GRADIENT PROGRESS BAR VISUALIZATION ---
+    st.markdown("---")
+    st.markdown("### Default Probability")
+    
+    st.markdown(
+        f"""
+        <div style='margin-top:20px;'>
+            <div style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
+                        height:40px; border-radius:20px; position:relative;'>
+                <div style='position:absolute; left:{default_risk_pct}%; top:-35px; 
+                            transform:translateX(-50%); text-align:center;'>
+                    <div style='background-color:white; color:black; padding:5px 12px; 
+                                border-radius:5px; font-weight:bold; border:2px solid #333;'>
+                        {default_risk_pct:.1f}%
+                    </div>
+                    <div style='width:0; height:0; border-left:8px solid transparent; 
+                                border-right:8px solid transparent; border-top:8px solid #333; 
+                                margin:0 auto;'></div>
+                </div>
+            </div>
+            <div style='display:flex; justify-content:space-between; margin-top:10px; font-size:14px;'>
+                <span>0% (No Risk)</span>
+                <span>50% (Threshold)</span>
+                <span>100% (Certain Default)</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     
     # --- RISK INTERPRETATION ---
     st.subheader('Risk Assessment')
@@ -171,36 +201,6 @@ if st.button('Predict'):
         f"""
         <div style='background-color:#2c2c2c; color:white; padding:18px; border-radius:10px; border:1px solid #444; margin-top:15px; text-align:justify;'>
             <b>Interpretation:</b> {interpretation}
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-    
-    # --- GRADIENT PROGRESS BAR VISUALIZATION ---
-    st.markdown("---")
-    st.markdown("### Default Probability")
-    
-    st.markdown(
-        f"""
-        <div style='margin-top:20px;'>
-            <div style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
-                        height:40px; border-radius:20px; position:relative;'>
-                <div style='position:absolute; left:{default_risk_pct}%; top:-35px; 
-                            transform:translateX(-50%); text-align:center;'>
-                    <div style='background-color:white; color:black; padding:5px 12px; 
-                                border-radius:5px; font-weight:bold; border:2px solid #333;'>
-                        {default_risk_pct:.1f}%
-                    </div>
-                    <div style='width:0; height:0; border-left:8px solid transparent; 
-                                border-right:8px solid transparent; border-top:8px solid #333; 
-                                margin:0 auto;'></div>
-                </div>
-            </div>
-            <div style='display:flex; justify-content:space-between; margin-top:10px; font-size:14px;'>
-                <span>0% (No Risk)</span>
-                <span>50% (Threshold)</span>
-                <span>100% (Certain Default)</span>
-            </div>
         </div>
         """,
         unsafe_allow_html=True
