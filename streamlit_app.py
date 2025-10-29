@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import pandas as pd
+import time
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Credit Default Prediction", layout="centered")
@@ -124,44 +125,71 @@ input_encoded = input_encoded[expected_columns]
 
 # --- PREDICTION ---
 if st.button('Predict'):
-    prediction = model.predict(input_encoded)
-    prediction_proba = model.predict_proba(input_encoded)
-    
-    # --- GRADIENT PROGRESS BAR VISUALIZATION ---
-    st.markdown("---")
-    st.markdown("### Default Probability")
+    # Show loading spinner
+    with st.spinner('🔍 Analyzing creditworthiness...'):
+        prediction = model.predict(input_encoded)
+        prediction_proba = model.predict_proba(input_encoded)
+        time.sleep(1)  # Simulate processing time for effect
     
     default_risk_pct = prediction_proba[0][1] * 100
     
-    st.markdown(
+    # --- GRADIENT PROGRESS BAR VISUALIZATION WITH FADE-IN ---
+    st.markdown("---")
+    
+    # Create placeholder for animated content
+    probability_placeholder = st.empty()
+    
+    probability_placeholder.markdown(
         f"""
-        <div style='margin-top:20px;'>
-            <div style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
-                        height:40px; border-radius:20px; position:relative;'>
-                <div style='position:absolute; left:{default_risk_pct}%; top:-35px; 
-                            transform:translateX(-50%); text-align:center;'>
-                    <div style='background-color:white; color:black; padding:5px 12px; 
-                                border-radius:5px; font-weight:bold; border:2px solid #333;'>
-                        {default_risk_pct:.1f}%
+        <style>
+        @keyframes fadeInUp {{
+            from {{
+                opacity: 0;
+                transform: translateY(20px);
+            }}
+            to {{
+                opacity: 1;
+                transform: translateY(0);
+            }}
+        }}
+        
+        .fade-in-section {{
+            animation: fadeInUp 0.8s ease-out forwards;
+        }}
+        </style>
+        
+        <div class="fade-in-section">
+            <h3>Default Probability</h3>
+            <div style='margin-top:20px;'>
+                <div style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
+                            height:40px; border-radius:20px; position:relative;'>
+                    <div style='position:absolute; left:{default_risk_pct}%; top:-35px; 
+                                transform:translateX(-50%); text-align:center;'>
+                        <div style='background-color:white; color:black; padding:5px 12px; 
+                                    border-radius:5px; font-weight:bold; border:2px solid #333;'>
+                            {default_risk_pct:.1f}%
+                        </div>
+                        <div style='width:0; height:0; border-left:8px solid transparent; 
+                                    border-right:8px solid transparent; border-top:8px solid #333; 
+                                    margin:0 auto;'></div>
                     </div>
-                    <div style='width:0; height:0; border-left:8px solid transparent; 
-                                border-right:8px solid transparent; border-top:8px solid #333; 
-                                margin:0 auto;'></div>
                 </div>
-            </div>
-            <div style='display:flex; justify-content:space-between; margin-top:10px; font-size:14px;'>
-                <span>0% (No Risk)</span>
-                <span>50% (Threshold)</span>
-                <span>100% (Certain Default)</span>
+                <div style='display:flex; justify-content:space-between; margin-top:10px; font-size:14px;'>
+                    <span>0% (No Risk)</span>
+                    <span>50% (Threshold)</span>
+                    <span>100% (Certain Default)</span>
+                </div>
             </div>
         </div>
         """,
         unsafe_allow_html=True
     )
     
-    # --- RISK INTERPRETATION ---
+    # Small delay before showing risk assessment
+    time.sleep(0.3)
+    
+    # --- RISK INTERPRETATION WITH FADE-IN ---
     st.markdown("---")
-    st.subheader('Risk Assessment')
     
     # Determine risk level and color
     if default_risk_pct < 30:
@@ -177,21 +205,38 @@ if st.button('Predict'):
         risk_color = "#dc3545"  # Red
         interpretation = "This applicant shows elevated default risk. Consider requiring additional collateral, a co-signer, or declining the loan application."
     
-    # Display color-coded risk assessment
-    st.markdown(
-        f"""
-        <div style='background-color:{risk_color}; color:white; padding:20px; border-radius:10px; text-align:center; margin-top:20px;'>
-            <h2 style='margin:0; font-size:28px;'>{risk_level}</h2>
-            <p style='margin:10px 0 0 0; font-size:18px;'>Default Probability: {default_risk_pct:.1f}%</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    risk_placeholder = st.empty()
     
-    st.markdown(
+    # Display color-coded risk assessment with fade-in
+    risk_placeholder.markdown(
         f"""
-        <div style='background-color:#2c2c2c; color:white; padding:18px; border-radius:10px; border:1px solid #444; margin-top:15px; text-align:justify;'>
-            <b>Interpretation:</b> {interpretation}
+        <style>
+        @keyframes fadeInUp2 {{
+            from {{
+                opacity: 0;
+                transform: translateY(20px);
+            }}
+            to {{
+                opacity: 1;
+                transform: translateY(0);
+            }}
+        }}
+        
+        .fade-in-section-2 {{
+            animation: fadeInUp2 0.8s ease-out 0.3s forwards;
+            opacity: 0;
+        }}
+        </style>
+        
+        <div class="fade-in-section-2">
+            <h3>Risk Assessment</h3>
+            <div style='background-color:{risk_color}; color:white; padding:20px; border-radius:10px; text-align:center; margin-top:20px;'>
+                <h2 style='margin:0; font-size:28px;'>{risk_level}</h2>
+                <p style='margin:10px 0 0 0; font-size:18px;'>Default Probability: {default_risk_pct:.1f}%</p>
+            </div>
+            <div style='background-color:#2c2c2c; color:white; padding:18px; border-radius:10px; border:1px solid #444; margin-top:15px; text-align:justify;'>
+                <b>Interpretation:</b> {interpretation}
+            </div>
         </div>
         """,
         unsafe_allow_html=True
