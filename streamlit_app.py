@@ -136,10 +136,12 @@ if st.button('Predict'):
         st.error('Prediction: Default')
         st.write(f'Probability of Default: {prediction_proba[0][1]:.2f}')
         st.write(f'Probability of No Default: {prediction_proba[0][0]:.2f}')
-
-     # --- GRADIENT PROGRESS BAR VISUALIZATION ---
+    
+    # --- GRADIENT PROGRESS BAR VISUALIZATION ---
     st.markdown("---")
     st.markdown("### Default Probability")
+    
+    default_risk_pct = prediction_proba[0][1] * 100
     
     st.markdown(
         f"""
@@ -168,9 +170,8 @@ if st.button('Predict'):
     )
     
     # --- RISK INTERPRETATION ---
+    st.markdown("---")
     st.subheader('Risk Assessment')
-    
-    default_risk_pct = prediction_proba[0][1] * 100
     
     # Determine risk level and color
     if default_risk_pct < 30:
