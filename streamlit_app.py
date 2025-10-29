@@ -190,9 +190,9 @@ if st.button('Predict'):
         <div class="fade-in-section">
             <h3>Default Probability</h3>
             <div style='margin-top:50px; margin-bottom:20px;'>
-                <div style='background-color:rgba(0, 0, 0, 0.3); height:40px; border-radius:20px; position:relative; overflow:hidden;'>
+                <div style='background-color:rgba(0, 0, 0, 0.3); height:40px; border-radius:20px; position:relative; overflow:hidden; border:2px solid #444;'>
                     <div class='progress-bar-fill' style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
-                                height:100%; border-radius:20px; position:absolute; left:0; top:0;'>
+                                height:100%; border-radius:18px; position:absolute; left:0; top:0;'>
                     </div>
                 </div>
                 <div style='position:relative; height:50px;'>
