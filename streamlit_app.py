@@ -136,14 +136,41 @@ if st.button('Predict'):
         st.error('Prediction: Default')
         st.write(f'Probability of Default: {prediction_proba[0][1]:.2f}')
         st.write(f'Probability of No Default: {prediction_proba[0][0]:.2f}')
-
-# --- FOOTER ---
-st.markdown(
-    """
-    <hr style="border:1px solid #444; margin-top:40px; margin-bottom:10px;">
-    <p style="text-align:center; color:gray; font-size:14px;">
-    © Marcello Borromeo | CIS 300 Honors Contract
-    </p>
-    """,
-    unsafe_allow_html=True
-)
+    
+    # --- RISK INTERPRETATION ---
+    st.subheader('Risk Assessment')
+    
+    default_risk_pct = prediction_proba[0][1] * 100
+    
+    # Determine risk level and color
+    if default_risk_pct < 30:
+        risk_level = "Low Risk"
+        risk_color = "#28a745"  # Green
+        interpretation = "This applicant shows strong creditworthiness with a low probability of default. The loan is likely to be repaid as agreed."
+    elif default_risk_pct < 60:
+        risk_level = "Medium Risk"
+        risk_color = "#ffc107"  # Orange/Yellow
+        interpretation = "This applicant presents moderate credit risk. Additional scrutiny or adjusted loan terms may be warranted."
+    else:
+        risk_level = "High Risk"
+        risk_color = "#dc3545"  # Red
+        interpretation = "This applicant shows elevated default risk. Consider requiring additional collateral, a co-signer, or declining the loan application."
+    
+    # Display color-coded risk assessment
+    st.markdown(
+        f"""
+        <div style='background-color:{risk_color}; color:white; padding:20px; border-radius:10px; text-align:center; margin-top:20px;'>
+            <h2 style='margin:0; font-size:28px;'>{risk_level}</h2>
+            <p style='margin:10px 0 0 0; font-size:18px;'>Default Probability: {default_risk_pct:.1f}%</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    st.markdown(
+        f"""
+        <div style='background-color:#2c2c2c; color:white; padding:18px; border-radius:10px; border:1px solid #444; margin-top:15px; text-align:justify;'>
+            <b>Interpretation:</b> {interpretation}
+        </div>
+        """,
+        unsafe_allow_
