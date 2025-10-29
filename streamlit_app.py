@@ -178,7 +178,7 @@ if st.button('Predict'):
     
     # --- GRADIENT PROGRESS BAR VISUALIZATION ---
     st.markdown("---")
-    st.markdown("### Default Probability Visualization")
+    st.markdown("### Default Probability")
     
     st.markdown(
         f"""
