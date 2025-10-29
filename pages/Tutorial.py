@@ -6,7 +6,7 @@ st.set_page_config(page_title="Tutorial", layout="centered")
 # --- TITLE ---
 st.markdown(
     """
-    <h1 style='text-align:center;'>How to Use the Credit Default Prediction App</h1>
+    <h1 style='text-align:center;'>Default Prediction Tutorial</h1>
     """,
     unsafe_allow_html=True
 )
