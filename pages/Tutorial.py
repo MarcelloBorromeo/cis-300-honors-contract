@@ -11,7 +11,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.image("loan.jpeg", use_container_width=True)
+st.image("loan2.avif", use_container_width=True)
 
 st.markdown(
     """
