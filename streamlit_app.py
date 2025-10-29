@@ -261,11 +261,11 @@ if st.button('Predict'):
         
         <div class="fade-in-section-2">
             <h3>Risk Assessment</h3>
-            <div style='background-color:{risk_color}; color:white; padding:20px; border-radius:10px; text-align:center; margin-top:20px;'>
+            <div style='background-color:{risk_color}; color:white; padding:20px; border-radius:10px; text-align:center; margin-top:20px; border:2px solid #444;'>
                 <h2 style='margin:0; font-size:28px;'>{risk_level}</h2>
                 <p style='margin:10px 0 0 0; font-size:18px;'>Default Probability: {default_risk_pct:.1f}%</p>
             </div>
-            <div style='background-color:#2c2c2c; color:white; padding:18px; border-radius:10px; border:1px solid #444; margin-top:15px; text-align:justify;'>
+            <div style='background-color:#2c2c2c; color:white; padding:18px; border-radius:10px; border:2px solid #444; margin-top:15px; text-align:justify;'>
                 <b>Interpretation:</b> {interpretation}
             </div>
         </div>
