@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import pandas as pd
+import plotly.graph_objects as go
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Credit Default Prediction", layout="centered")
@@ -136,6 +137,46 @@ if st.button('Predict'):
         st.error('Prediction: Default')
         st.write(f'Probability of Default: {prediction_proba[0][1]:.2f}')
         st.write(f'Probability of No Default: {prediction_proba[0][0]:.2f}')
+    
+    # --- PREDICTION CONFIDENCE GAUGE ---
+    st.subheader('Default Risk Assessment')
+    
+    default_risk_pct = prediction_proba[0][1] * 100
+    
+    # Determine gauge color based on risk level
+    if default_risk_pct < 30:
+        gauge_color = "green"
+        risk_level = "Low Risk"
+    elif default_risk_pct < 60:
+        gauge_color = "orange"
+        risk_level = "Medium Risk"
+    else:
+        gauge_color = "darkred"
+        risk_level = "High Risk"
+    
+    fig = go.Figure(go.Indicator(
+        mode = "gauge+number",
+        value = default_risk_pct,
+        title = {'text': f"Default Risk<br><span style='font-size:0.8em;color:gray'>{risk_level}</span>"},
+        number = {'suffix': "%"},
+        gauge = {
+            'axis': {'range': [None, 100]},
+            'bar': {'color': gauge_color},
+            'steps': [
+                {'range': [0, 30], 'color': "lightgray"},
+                {'range': [30, 60], 'color': "gray"},
+                {'range': [60, 100], 'color': "darkgray"}
+            ],
+            'threshold': {
+                'line': {'color': "red", 'width': 4},
+                'thickness': 0.75,
+                'value': 50
+            }
+        }
+    ))
+    
+    fig.update_layout(height=300)
+    st.plotly_chart(fig, use_container_width=True)
 
 # --- FOOTER ---
 st.markdown(
