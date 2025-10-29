@@ -129,7 +129,7 @@ if st.button('Predict'):
     with st.spinner('🔍 Analyzing creditworthiness...'):
         prediction = model.predict(input_encoded)
         prediction_proba = model.predict_proba(input_encoded)
-        time.sleep(5)  # Simulate processing time for effect
+        time.sleep(1)  # Simulate processing time for effect
     
     default_risk_pct = prediction_proba[0][1] * 100
     
@@ -190,7 +190,7 @@ if st.button('Predict'):
         <div class="fade-in-section">
             <h3>Default Probability</h3>
             <div style='margin-top:50px; margin-bottom:20px;'>
-                <div style='background-color:#e0e0e0; height:40px; border-radius:20px; position:relative; overflow:hidden;'>
+                <div style='background-color:rgba(0, 0, 0, 0.3); height:40px; border-radius:20px; position:relative; overflow:hidden;'>
                     <div class='progress-bar-fill' style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
                                 height:100%; border-radius:20px; position:absolute; left:0; top:0;'>
                     </div>
