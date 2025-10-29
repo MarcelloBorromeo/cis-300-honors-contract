@@ -176,44 +176,17 @@ if st.button('Predict'):
         unsafe_allow_html=True
     )
     
-    # --- ANIMATED GRADIENT PROGRESS BAR ---
+    # --- GRADIENT PROGRESS BAR VISUALIZATION ---
     st.markdown("---")
     st.markdown("### Default Probability")
     
     st.markdown(
         f"""
-        <style>
-        @keyframes fillBar {{
-            from {{
-                width: 0%;
-            }}
-            to {{
-                width: {default_risk_pct}%;
-            }}
-        }}
-        
-        @keyframes fadeIn {{
-            from {{
-                opacity: 0;
-                transform: translateX(-50%) translateY(-10px);
-            }}
-            to {{
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }}
-        }}
-        </style>
-        
         <div style='margin-top:20px;'>
-            <div style='background-color:#e0e0e0; height:40px; border-radius:20px; position:relative; overflow:hidden;'>
-                <div style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
-                            height:100%; border-radius:20px; position:absolute; 
-                            animation: fillBar 1.5s ease-out forwards;'>
-                </div>
+            <div style='background: linear-gradient(to right, #28a745 0%, #ffc107 50%, #dc3545 100%); 
+                        height:40px; border-radius:20px; position:relative;'>
                 <div style='position:absolute; left:{default_risk_pct}%; top:-35px; 
-                            transform:translateX(-50%); text-align:center;
-                            animation: fadeIn 0.5s ease-out 1.2s forwards;
-                            opacity: 0;'>
+                            transform:translateX(-50%); text-align:center;'>
                     <div style='background-color:white; color:black; padding:5px 12px; 
                                 border-radius:5px; font-weight:bold; border:2px solid #333;'>
                         {default_risk_pct:.1f}%
